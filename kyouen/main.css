@@ -1,0 +1,79 @@
+*{
+  padding: 0;
+  border: 0;
+  margin: 0;
+  user-select: none;
+}
+
+body{
+  padding: 0;
+  border: 0;
+  margin: 15px;
+}
+
+#frame{
+  width: 360px;
+  height: 360px;
+  padding: 4px;
+  border: 2px solid rgb(170, 103, 51);
+  margin: 12px 0;
+  background-position: -50% 0px;
+  background-image: url("./imgs/bg.jpg");
+  font-size: 0;
+}
+
+.cell{
+  width: 11.11%;
+  height: 11.11%;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+#players{
+  width: 372px;
+  height: 120px;
+}
+
+.player{
+  width: 174px;
+  height: 120px;
+  padding: 6px 6px 0 6px;
+  margin: 0 0 12px 0;
+  display: inline-block;
+  font-family: 'STIX Two Text', serif;
+}
+
+.turn{
+  background: rgb(0, 128, 32);
+}
+
+input{
+  height: 24px;
+  width: 60px;
+}
+
+.message{
+  width: 180px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.timer{
+  width: 180px;
+  font-size: 72px;
+}
+
+label{
+  display: inline-block;
+  height: 16px;
+  width: 72px;
+  padding: 2px 0 6px 0;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Heebo', sans-serif;
+  border-radius: 2px;
+  background: #aaaaaa;
+  background: linear-gradient(180deg, #cccccc 0%, #aaaaaa 100%);
+}

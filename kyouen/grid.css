@@ -1,0 +1,37 @@
+.cell.center-center{
+  background: center / contain no-repeat url("./imgs/center.png");
+}
+.cell.top-center{
+  background: center / contain no-repeat url("./imgs/top.png");
+}
+.cell.bottom-center{
+  background: center / contain no-repeat url("./imgs/bottom.png");
+}
+.cell.center-left{
+  background: center / contain no-repeat url("./imgs/left.png");
+}
+.cell.center-right{
+  background: center / contain no-repeat url("./imgs/right.png");
+}
+.cell.top-left{
+  background: center / contain no-repeat url("./imgs/tl.png");
+}
+.cell.top-right{
+  background: center / contain no-repeat url("./imgs/tr.png");
+}
+.cell.bottom-left{
+  background: center / contain no-repeat url("./imgs/bl.png");
+}
+.cell.bottom-right{
+  background: center / contain no-repeat url("./imgs/br.png");
+}
+
+
+.cell.black{
+  background: #000000;
+  border-radius: 50%;
+}
+.cell.white{
+  background: #ffffff;
+  border-radius: 50%;
+}

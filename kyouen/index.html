@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html><head>
+  <title>kyouen</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo&family=STIX+Two+Text&display=swap" rel="stylesheet">
+</head><body>
+  <h1>Kyouen(alpha)</h1>
+  <label for="resetButton" id="rabelForResetButton">reset</label><input type="button" class="resetButton" id="resetButton" value="reset" onclick="reset();" hidden>
+  <label for="pauseButton" id="rabelForPauseButton">pause</label><input type="button" class="pauseButton" id="pauseButton" value="pause" onclick="pause();" hidden>
+  <div id="frame"></div>
+  <script>
+    function drawGrid(){
+      let frame=document.getElementById("frame");
+      for(let i=0;i<9;i++){
+        for(let j=0;j<9;j++){
+          let div=document.createElement("div");
+          div.setAttribute("id",`cell${i}${j}`);
+          div.setAttribute("onClick",`selectPoint(${i},${j});`);
+          div.classList.add("cell");
+          div.classList.add(`${i==0?"top":i==8?"bottom":"center"}-${j==0?"left":j==8?"right":"center"}`);
+          frame.appendChild(div);
+        }
+        frame.appendChild(document.createElement("br"));
+      }
+    }drawGrid();
+  </script>
+  <div id="players">
+    <div id="player0" class="player">
+      <label for="callButton0" class="rabelForCallButton">kyouen!</label><input type="button" class="callButton" id="callButton0" value="kyouen!" onclick="callKyouen(0);" hidden>
+      <div class="message"></div>
+      <div class="timer"><span class="m">1</span>:<span class="s">00</span></div>
+    </div><div id="player1" class="player">
+      <label for="callButton1" class="rabelForCallButton">kyouen!</label><input type="button" class="callButton" id="callButton1" value="kyouen!" onclick="callKyouen(1);" hidden>
+      <div class="message"></div>
+      <div class="timer"><span class="m">1</span>:<span class="s">00</span></div>
+    </div>
+  </div><br>
+  <a href="../">&lt;home</a><br>
+  <a href="https://github.com/WiIIiam104/kyouen/blob/main/README.md">readme</a>
+
+
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <link rel="stylesheet" type="text/css" href="grid.css">
+
+  <script type="text/javascript" src="click.js"></script>
+
+</body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html><head>
+  <title>reversi</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo&family=STIX+Two+Text&display=swap" rel="stylesheet">
+</head><body>
+  <h1>Reversi(alpha)</h1>
+  <label for="resetButton" id="rabelForResetButton">reset</label><input type="button" class="resetButton" id="resetButton" value="reset" hidden>
+  <label for="pauseButton" id="rabelForPauseButton">pause</label><input type="button" class="pauseButton" id="pauseButton" value="pause" hidden>
+  <div id="frame"></div>
+  <script>
+    function drawGrid(){
+      let frame=document.getElementById("frame");
+      for(let i=0;i<8;i++){
+        for(let j=0;j<8;j++){
+          let div=document.createElement("div");
+          div.setAttribute("id",`cell${i+1}${j+1}`);
+          div.classList.add("cell");
+          frame.appendChild(div);
+        }
+        frame.appendChild(document.createElement("br"));
+      }
+    }drawGrid();
+  </script>
+  <div id="players">
+    <div id="player0" class="player">
+      <label class="colorLabel"></label>
+      <div class="message"></div>
+      <div class="timer"><span class="m">1</span>:<span class="s">00</span></div>
+    </div><div id="player1" class="player">
+      <label class="colorLabel"></label>
+      <div class="message"></div>
+      <div class="timer"><span class="m">1</span>:<span class="s">00</span></div>
+    </div>
+  </div><br>
+  <a href="../">&lt;home</a><br>
+  <a href="https://github.com/WiIIiam104/reversi/blob/main/README.md">readme</a>
+
+
+  <link rel="stylesheet" type="text/css" href="main.css">
+
+  <script type="text/javascript" src="click.js"></script>
+  <script type="text/javascript" src="addClickEvent.js"></script>
+
+</body></html>
