@@ -95,7 +95,7 @@ class Time{
 
   changeTurn(){
     clearTimeout(this.timerId);
-    eval(`this.player${this.turn}+=${fischerTime};`);
+    eval(`this.player${this.turn}+=${addtionalTime};`);
     time.present();
     document.getElementsByClassName("player")[this.turn].classList.remove("turn");
     this.turn=!this.turn-0;
@@ -108,8 +108,15 @@ class Time{
   }
 }
 
+function getUrlQueryParams(){
+  let url=window.location.href;
+  let param=url.split("?")[1]??"";
+  return JSON.parse(`{"${param.replaceAll("=","\":").replaceAll("&",",\"")}}`);
+}const urlQueryParams=getUrlQueryParams();
+
 let audios={};
 function playAudio(path){
+  if(!audioFlg)return;
   if(!(path in audios)){
     audios[path]=new Audio(path);
   }
@@ -118,13 +125,14 @@ function playAudio(path){
 
 function init(){
   size=9;
-  initialTime=60;
-  fischerTime=20;
+  initialTime=urlQueryParams.initialTime??60;
+  addtionalTime=urlQueryParams.addtionalTime??20;
   latestPoint=null;
   whitePoints=[];
   endFlg=false;
   pausedFlg=false;
   callFlg=false;
+  audioFlg=urlQueryParams.audioFlg??true;
   time=new Time(initialTime);
   time.present();
   time.countDown();
