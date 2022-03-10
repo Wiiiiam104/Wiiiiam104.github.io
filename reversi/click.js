@@ -147,8 +147,15 @@ function writeColorLabels(time){
   colorLabels[1].innerHTML=(time.turn+1==time.color?"white":"black");
 }
 
+function getUrlQueryParams(){
+  let url=window.location.href;
+  let param=url.split("?")[1]??"";
+  return JSON.parse(`{"${param.replaceAll("=","\":").replaceAll("&",",\"")}}`);
+}const urlQueryParams=getUrlQueryParams();
+
 let audios={};
 function playAudio(path){
+  if(!audioFlg)return;
   if(path in audios){
     audios[path].play();
   }else{
@@ -157,13 +164,14 @@ function playAudio(path){
 }
 
 function init(){
-  initialTime=600;
+  initialTime=urlQueryParams.initialTime??600;
   latestPoint=null;
   board=new Board;
   board.present();
   endFlg=false;
   pausedFlg=false;
   passFlg=false;
+  audioFlg=urlQueryParams.audioFlg??false;
   time=new Time(initialTime);
   writeColorLabels(time);
   time.present();
