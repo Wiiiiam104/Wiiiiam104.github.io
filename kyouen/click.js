@@ -133,7 +133,7 @@ function init(){
   endFlg=false;
   pausedFlg=false;
   callFlg=false;
-  audioFlg=urlQueryParams.audioFlg??true;
+  audioFlg=urlQueryParams.audioFlg??false;
   time=new Time(initialTime);
   time.present();
   time.countDown();
