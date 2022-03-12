@@ -149,7 +149,8 @@ function writeColorLabels(time){
 
 function getUrlQueryParams(){
   let url=window.location.href;
-  let param=url.split("?")[1]??"";
+  let param=url.split("?")[1];
+  if(param===undefined)return {};
   return JSON.parse(`{"${param.replaceAll("=","\":").replaceAll("&",",\"")}}`);
 }const urlQueryParams=getUrlQueryParams();
 
