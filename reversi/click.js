@@ -126,7 +126,7 @@ class Time{
       }
     }
     if(passFlg){
-      alert(`${turn.color==1?"white":"black"}:pass`);
+      alert(`${this.color==1?"white":"black"}:pass`);
       passFlg=false;
     }
     this.countDown();
