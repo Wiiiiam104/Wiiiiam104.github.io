@@ -6,7 +6,7 @@
   f=()=>{document.write(CryptoJS.AES.encrypt(document.getElementById("data").value,document.getElementById("key").value))};
 </script>
 </head><body>
-  <input type="text" placeholder="data" id="data"></input>
+  <input type="text" placeholder="data (html->base64)" id="data"></input>
   <input type="password" placeholder="key" id="key"></input>
   <input type="button" value="encrypt" onclick="f()">
 </body></html>
