@@ -3,10 +3,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script>
   params=window.location.href.split("?")[1]===undefined?{}:JSON.parse(`{"${window.location.href.split("?")[1].replaceAll("=","\":\"").replaceAll("&","\",\"")}"}`);
-  f=()=>{document.write(CryptoJS.AES.encrypt(document.getElementById("data").value,document.getElementById("key").value))};
+  f=()=>{document.getElementById("result").value=CryptoJS.AES.encrypt(document.getElementById("data").value,document.getElementById("key").value)};
 </script>
 </head><body>
   <input type="text" placeholder="data (html->base64)" id="data"></input>
   <input type="password" placeholder="key" id="key"></input>
-  <input type="button" value="encrypt" onclick="f()">
+  <input type="button" value="encrypt" onclick="f()"></input><br>
+  <input type="text" placeholder="result" id="result"></input>
 </body></html>
