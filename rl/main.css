@@ -1,0 +1,28 @@
+*{
+  padding: 0;
+  border: 0;
+  margin: 0;
+  user-select: none;
+}
+
+body{
+  padding: 0;
+  border: 0;
+  margin: 15px;
+}
+
+#frame{
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 8px;
+}
+
+input{
+  height: 24px;
+  width: 60px;
+}
