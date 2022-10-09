@@ -3,6 +3,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script>
   params=window.location.href.split("?")[1]===undefined?{}:JSON.parse(`{"${window.location.href.split("?")[1].replaceAll("=","\":\"").replaceAll("&","\",\"")}"}`);
-  fetch(params.uri??params.id).then(r=>r.text()).then(r=>{document.write(window.atob(CryptoJS.AES.decrypt(r,params.key??window.prompt("input the key")).toString(CryptoJS.enc.Utf8)))});
+  fetch(params.uri??params.id+".txt").then(r=>r.text()).then(r=>{document.write(window.atob(CryptoJS.AES.decrypt(r,params.key??window.prompt("input the key")).toString(CryptoJS.enc.Utf8)))});
 </script>
 </head></html>
