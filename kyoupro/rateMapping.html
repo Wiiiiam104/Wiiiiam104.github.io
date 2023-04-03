@@ -7,6 +7,7 @@
     <button id="cal" onclick="f();">calculate rating</button>
     <div>Rating : <span id="rating">0</span></div>
     <canvas id="graph" height="2000" width="1000" style="background-color:#ccc;"></canvas>
+    <p>2本の横線の内 下が真のRating 上がRated参加回数による補正前の値です。参加回数が多いほどこれらは近づきます。</p>
     <script>
       function f(){
         let d=JSON.parse(document.querySelector("#perfs").value);
