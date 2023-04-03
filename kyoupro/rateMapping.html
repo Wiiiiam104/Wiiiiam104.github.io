@@ -14,9 +14,9 @@
         let p=[];for(let i=0;i<d.length;i++){if(d[i].IsRated){p.push(d[i].InnerPerformance);}}
         let ctx=document.querySelector("#graph").getContext("2d");ctx.clearRect(0,0,1000,2000);
         for(let i=0;i<8;i++){ctx.fillStyle="black",ctx.fillRect(0,2000-100*Math.pow(2,i/2),1000,1);}
-        for(let i=0;i<p.length;i++){ctx.fillStyle=p[i]<0?"black":p[i]<400?"gray":p[i]<800?"green":p[i]<1200?"cyan":p[i]<1600?"blue":p[i]<2000?"yellow":p[i]<2400?"orange":"red",ctx.fillRect(1000*(1-Math.pow(0.9,p.length-i-1)),2000-100*Math.pow(2,p[i]/800),100*Math.pow(0.9,p.length-i-1),100*Math.pow(2,p[i]/800));}
-        let r=d[d.length-1].NewRating;ctx.fillStyle=r<0?"black":r<400?"gray":r<800?"green":r<1200?"cyan":r<1600?"blue":r<2000?"yellow":r<2400?"orange":"red",ctx.fillRect(0,2000-100*Math.pow(2,r/800)-1,1000,2);
-        let R=r+1200/(Math.sqrt(19)-1)*(Math.sqrt(1-Math.pow(0.81,p.length))/(1-Math.pow(0.9,p.length))-1);ctx.fillStyle=R<0?"black":R<400?"gray":R<800?"green":R<1200?"cyan":R<1600?"blue":R<2000?"yellow":R<2400?"orange":"red",ctx.fillRect(0,2000-100*Math.pow(2,R/800)-1,1000,2);
+        for(let i=0;i<p.length;i++){ctx.fillStyle=p[i]<0?"black":p[i]<400?"gray":p[i]<800?"brown":p[i]<1200?"green":p[i]<1600?"cyan":p[i]<2000?"blue":p[i]<2400?"yellow":p[i]<2800?"orange":"red",ctx.fillRect(1000*(1-Math.pow(0.9,p.length-i-1)),2000-100*Math.pow(2,p[i]/800),100*Math.pow(0.9,p.length-i-1),100*Math.pow(2,p[i]/800));}
+        let r=d[d.length-1].NewRating;ctx.fillStyle=r<0?"black":r<400?"gray":r<800?"brown":r<1200?"green":r<1600?"cyan":r<2000?"blue":r<2400?"yellow":r<2800?"orange":"red",ctx.fillRect(0,2000-100*Math.pow(2,r/800)-1,1000,2);
+        let R=r+1200/(Math.sqrt(19)-1)*(Math.sqrt(1-Math.pow(0.81,p.length))/(1-Math.pow(0.9,p.length))-1);ctx.fillStyle=R<0?"black":R<400?"gray":R<800?"brown":R<1200?"green":R<1600?"cyan":R<2000?"blue":R<2400?"yellow":R<2800?"orange":"red",ctx.fillRect(0,2000-100*Math.pow(2,R/800)-1,1000,2);
         document.querySelector("#rating").innerHTML=r;
       }
     </script>
