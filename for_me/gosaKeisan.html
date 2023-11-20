@@ -1,0 +1,62 @@
+<html>
+  <script>
+    
+    const t=[0,0,63.66,9.92,5.84,4.60,4.03,3.71,3.50,3.36,3.25];
+
+    toText=(json)=>{
+      return `<br>個数: ${json.n}<br>平均: ${json.ave}<br>標準偏差: ${json.sigma_ave}<br>t(0.99,n): ${t[json.n]}<br>99%信頼区間: ${json.epsilon_ave}`
+    }
+
+    cul=(data)=>{
+      let n=data.length;
+      for(let i=0;i<n;i++) data[i]=data[i]-0;
+      let ave=0; for(let d of data) ave+=d; ave/=n;
+      let sigma=0; for(let d of data) sigma+=(d-ave)**2; sigma/=n-1; sigma=sigma**0.5;
+      let sigma_ave=sigma/(n**0.5);
+      let epsilon_ave=t[n]*sigma_ave;
+
+      return {n, ave, sigma, sigma_ave, epsilon_ave};
+    }
+
+    culVar=(span)=>{
+      let data=span.querySelector(".data").value.split(",");
+      let result=span.querySelector(".result");
+      let json=cul(data);
+      if(json.n<2) return json;
+      result.innerHTML=toText(json);
+      return json;
+    }
+
+    culAll=()=>{
+      let spans=document.querySelectorAll(".dataTable > span");
+      let epsilon2=0;
+      for(let span of spans){
+        let json=culVar(span);
+        if(json.n<2) continue;
+        let coef=(span.querySelector(".coef").value-0);
+        epsilon2+=(coef*json.epsilon_ave/json.ave)**2;
+      }
+      let epsilon=epsilon2**0.5;
+      let answer=document.querySelector("#answer");
+      answer.innerHTML=`<br>(ε/ave)^2: ${epsilon2}<br>ε/ave: ${epsilon}`;
+    }
+  </script>
+  <body>
+    <button class="culButton" onclick='culAll()'>計算</button> ※すべての値が同じデータは扱えません
+    <span id="answer"></span>
+    <div class="dataTable">
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+      <span><br> データ(カンマ区切り):<input class="data" placeholder=""> 誤差の伝搬時のε/aveの係数:<input class="coef" value="1" placeholder="0"> <span class="result"></span> </span><br>
+    </div>
+  </body>
+</html>
