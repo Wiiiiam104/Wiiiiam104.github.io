@@ -1,0 +1,55 @@
+####
+# wsl
+####
+> wsl --install ubuntu
+> wsl
+sudo apt update
+sudo apt upgrade
+sudo adduser guest
+sudo usermod -aG sudo guest
+sudo vim /etc/wsl.conf                         # [user] \n default=guest
+exit
+> wsl --shutdown
+> wsl
+cd ~
+sudo apt-get install build-essential
+
+####
+# git
+####
+git --version
+ssh-keygen -t ecdsa
+sudo vim ~/.ssh/id_ecdsa.pub                   # copy and paste to github
+git config --global user.name <USER_NAME>      # use double quote
+git config --global user.email <USER_EMAIL>
+git config --global --edit                     # [alias] \n\t co = checkout
+git config --global push.default simple
+# vim ./.git/hooks/pre-push                    # if u need
+
+####
+# fish
+####
+sudo apt install fish
+chsh -s /usr/bin/fish
+echo "cd ~" >> ~/.config/fish/config.fish
+exit
+> wsl
+
+####
+# brew (w/ fish)
+####
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo >> /home/guest/.config/fish/config.fish
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/guest/.config/fish/config.fish
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+####
+# docker
+####
+sudo snap install docker
+# sudo docker run hello-world                  # running test
+
+####
+# direnv (w/ fish)
+####
+echo "direnv hook fish | source" >> ~/.config/fish/config.fish
