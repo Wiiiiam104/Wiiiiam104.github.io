@@ -47,7 +47,10 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # docker
 ####
 sudo snap install docker
-# sudo docker run hello-world                  # running test
+sudo groupadd docker
+exit
+> wsl
+sudo usermod -aG docker $USER
 
 ####
 # direnv (w/ fish)
