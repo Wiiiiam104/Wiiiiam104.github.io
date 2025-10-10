@@ -53,6 +53,19 @@ exit
 sudo usermod -aG docker $USER
 
 ####
+# TeX (w/ docker, cf. https://qiita.com/k_uki512/items/728605e4dc25b2706baf)
+####
+docker pull ghcr.io/being24/latex-docker:latest
+git clone git@github.com:Wiiiiam104/latex-template-ja
+cd latex-template-ja/
+git co -b report_hoge                                                                          # create a feat branch to store on github
+# code .                                                                                       # edit main.tex
+docker run --rm --name latex-template-ja -it -v (pwd):/workdir ghcr.io/being24/latex-docker    # Fish Shell (in Bash, use `${pwd}` instead)
+$ uplatex main.tex
+$ dvipdfmx main
+$ exit
+
+####
 # direnv (w/ fish)
 ####
 echo "direnv hook fish | source" >> ~/.config/fish/config.fish
