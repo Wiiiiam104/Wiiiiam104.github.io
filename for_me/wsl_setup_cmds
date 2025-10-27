@@ -8,9 +8,6 @@ sudo apt upgrade
 sudo adduser guest
 sudo usermod -aG sudo guest
 sudo vim /etc/wsl.conf                         # [user] \n default=guest
-exit
-> wsl --shutdown
-> wsl
 cd ~
 sudo apt-get install build-essential
 
@@ -32,8 +29,7 @@ git config --global push.default simple
 sudo apt install fish
 chsh -s /usr/bin/fish
 echo "cd ~" >> ~/.config/fish/config.fish
-exit
-> wsl
+exec fish
 
 ####
 # brew (w/ fish)
@@ -48,9 +44,12 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 ####
 sudo snap install docker
 sudo groupadd docker
-exit
-> wsl
 sudo usermod -aG docker $USER
+echo "We need restarting wsl to reset `/var/run/docker.sock` permission."
+echo "Please call `wsl --shutdown` in powershell."
+exit
+> wsl --shutdown          # restart wsl to reset `/var/run/docker.sock` permission
+> wsl
 
 ####
 # TeX (w/ docker, cf. https://qiita.com/k_uki512/items/728605e4dc25b2706baf)
