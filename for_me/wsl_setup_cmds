@@ -22,7 +22,7 @@ ssh-keygen -t ecdsa
 sudo vim ~/.ssh/id_ecdsa.pub                   # copy and paste to github
 git config --global user.name <USER_NAME>      # use double quote
 git config --global user.email <USER_EMAIL>
-git config --global --edit                     # [alias] \n\t co = checkout
+git config --global alias.co checkout
 git config --global push.default simple
 # vim ./.git/hooks/pre-push                    # if u need
 
