@@ -57,7 +57,7 @@ exit
 docker pull ghcr.io/being24/latex-docker:latest
 git clone git@github.com:Wiiiiam104/latex-template-ja
 cd latex-template-ja/
-sudo chmod 755 .                                                                                                                                 # avoid `dvipdfmx:fatal: Unable to open`
+sudo chmod 777 . -R                                                                                                                              # avoid `dvipdfmx:fatal: Unable to open`
 git co -b report_hoge                                                                                                                            # create a feat branch to store on github
 # code .                                                                                                                                         # edit main.tex
 docker run --rm --name latex-template-ja -it -v (pwd):/workdir ghcr.io/being24/latex-docker sh -c "uplatex main.tex && dvipdfmx main && exit"    # Fish Shell (in Bash, use `${pwd}` instead.)
