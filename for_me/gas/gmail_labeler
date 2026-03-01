@@ -1,0 +1,50 @@
+function setLabelAndArchive() {
+  // スレッド: 同じ件名の返信メールを1つのまとまり（会話）としてグループ化し、時系列順に表示する機能
+  const threads = GmailApp.getInboxThreads();
+  const labels = GmailApp.getUserLabels();
+  
+  threads.forEach(thread => {
+    const message = thread.getMessages()[0]; // 各スレッドの最初のメッセージを取得
+    const messageFrom = message.getFrom();
+    const [displayName, domainPart] = getLabelName(messageFrom);
+    const labelName = displayName + domainPart;
+    
+    if (labelName) {
+      // ラベルが存在するか確認し、なければ作成
+      const label =
+        getExistingLabelBySuffix(domainPart) ??
+          GmailApp.createLabel(labelName);
+      
+      // ラベルを付与して受信トレイからアーカイブ
+      thread.addLabel(label);
+      thread.moveToArchive();
+    }
+  });
+}
+
+function getExistingLabelBySuffix(suffix) {  
+  const allLabels = GmailApp.getUserLabels();
+  return allLabels.filter(label => label.getName().endsWith(suffix))[0];
+}
+
+function getLabelName(messageFrom) {
+  // 入力例: '"Exampleマガジン" <magazine@mail.example.com>'
+  // 出力例: "Exampleマガジン（example.com）"
+  const match = messageFrom.match(/"?([^"<]+)"?\s*<.+@(.+)>|(.+)@(.+)/);
+  const displayName = match[1] ?? match[3]
+  const domain = match[2] ?? match[4]
+
+  return [displayName.trim(), "（" + getMainDomain(domain.trim()) + "）"];
+}
+
+function getMainDomain(domain) {
+  // 属性型・地域型JPドメイン (.co.jp, .ne.jp, .ac.jp, .lg.jp など) の判定
+  // 末尾が「英数字.属性.jp」の形なら、後ろから3パーツを結合して返す
+  const jpMatch = domain.match(/([^.]+\.(?:co|ne|or|ac|go|ad|ed|lg|kyoto|tokyo)\.jp)$/);
+  if (jpMatch) return jpMatch[1];
+
+  // 一般的なドメイン (.com, .net, .org, .jp 単体など) の判定
+  // 末尾から2パーツ（hoge.com など）を抜き出す
+  const commonMatch = domain.match(/([^.]+\.[^.]+)$/);
+  return commonMatch ? commonMatch[1] : domain;
+}
