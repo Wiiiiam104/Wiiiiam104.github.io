@@ -30,7 +30,7 @@ function getExistingLabelBySuffix(suffix) {
 function getLabelName(messageFrom) {
   // 入力例: '"Exampleマガジン" <magazine@mail.example.com>'
   // 出力例: "Exampleマガジン（example.com）"
-  const match = messageFrom.match(/"?([^"<]+)"?\s*<.+@(.+)>|(.+)@(.+)/);
+  const match = messageFrom.match(/"?([^"<]+)"?\s*<.+@(.+)>|<?(.+)@([^>]+)>?/);
   const displayName = match[1] ?? match[3]
   const domain = match[2] ?? match[4]
 
